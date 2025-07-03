@@ -1,6 +1,8 @@
 # Change these first
 owner: Jarvis
 repo: Jarvis-Health-Check 
+
+sites:
   - name: TestEnv
     url: https://it.wikipedia.org/wiki/Cartoon_Network
   - name: TestEnv2
