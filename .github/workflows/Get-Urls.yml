@@ -25,14 +25,15 @@ jobs:
 
       - name: Update .upptimerc.yml with new sites
         run: |
-          # Prendi tutto fino a "sites:" incluso
+          # Prendi tutto fino alla riga "sites:"
           awk 'BEGIN{print_header=1} /^sites:/ {print; exit} {print}' .upptimerc.yml > header.yml
 
-          # Prendi tutto dopo la fine della lista (dopo la sezione sites)
+          # Prendi tutto dopo la sezione sites
           awk 'found && NF && !/^\s*-/ {print; found=0} /^sites:/ {found=1; next} found && /^\s*-/ {next}' .upptimerc.yml > footer.yml || true
 
           # Costruisci il nuovo file completo
           cat header.yml > updated_upptimerc.yml
+          echo "sites:" >> updated_upptimerc.yml
           cat new_sites_block.yml >> updated_upptimerc.yml
           echo "" >> updated_upptimerc.yml
           cat footer.yml >> updated_upptimerc.yml || true
