@@ -3,8 +3,10 @@ owner: Jarvis
 repo: Jarvis-Health-Check 
 
 sites:
+sites:
   - name: TestEnv
     url: https://it.wikipedia.org/wiki/Cartoon_Network
   - name: TestEnv2
     url: https://chatgpt.com
 
+    url: https://it.wikipedia.org/wiki/Cartoon_Network
