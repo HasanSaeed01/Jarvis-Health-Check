@@ -2,7 +2,7 @@ name: Update Sites from API
 
 on:
   schedule:
-    - cron: '*/1 * * * *'  # Ogni minuto
+    - cron: '*/6 * * * *'  # Ogni minuto
   workflow_dispatch:       # Per avvio manuale
 
 jobs:
