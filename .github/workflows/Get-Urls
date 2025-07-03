@@ -1,0 +1,38 @@
+name: Update Sites from API
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'  # Ogni minuto
+  workflow_dispatch:       # Per avvio manuale
+
+jobs:
+  update-sites:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || github.token }}
+
+      - name: Call API to get environments
+        run: |
+          curl -ks https://6865cac489803950dbb0478b.mockapi.io/envs > sites.json
+
+      - name: Convert API response to YAML
+        run: |
+          echo "sites:" > sites.yml
+          jq -r '.[] | "  - name: \(.name)\n    url: \(.url)"' sites.json >> sites.yml
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sites.yml
+          if git diff --cached --quiet; then
+            echo "Nessuna modifica da committare"
+          else
+            git commit -m "Update sites.yml from API"
+            git push
+          fi
+
