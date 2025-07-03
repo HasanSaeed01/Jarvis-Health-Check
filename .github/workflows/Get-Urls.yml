@@ -19,20 +19,35 @@ jobs:
         run: |
           curl -ks https://6865cac489803950dbb0478b.mockapi.io/envs > sites.json
 
-      - name: Convert API response to YAML
+      - name: Generate new sites YAML block
         run: |
-          echo "sites:" > sites.yml
-          jq -r '.[] | "  - name: \(.name)\n    url: \(.url)"' sites.json >> sites.yml
+          jq -r '.[] | "  - name: \(.name)\n    url: \(.url)"' sites.json > new_sites_block.yml
+
+      - name: Update .upptimerc.yml with new sites
+        run: |
+          # Prendi tutto fino a "sites:" incluso
+          awk 'BEGIN{print_header=1} /^sites:/ {print; exit} {print}' .upptimerc.yml > header.yml
+
+          # Prendi tutto dopo la fine della lista (dopo la sezione sites)
+          awk 'found && NF && !/^\s*-/ {print; found=0} /^sites:/ {found=1; next} found && /^\s*-/ {next}' .upptimerc.yml > footer.yml || true
+
+          # Costruisci il nuovo file completo
+          cat header.yml > updated_upptimerc.yml
+          cat new_sites_block.yml >> updated_upptimerc.yml
+          echo "" >> updated_upptimerc.yml
+          cat footer.yml >> updated_upptimerc.yml || true
+
+          # Sovrascrivi il file originale
+          mv updated_upptimerc.yml .upptimerc.yml
 
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sites.yml
+          git add .upptimerc.yml
           if git diff --cached --quiet; then
             echo "Nessuna modifica da committare"
           else
-            git commit -m "Update sites.yml from API"
+            git commit -m "Update sites section in .upptimerc.yml from API"
             git push
           fi
-
