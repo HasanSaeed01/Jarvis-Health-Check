@@ -10,11 +10,11 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 345,
-    "timeDay": 345,
-    "timeWeek": 345,
-    "timeMonth": 345,
-    "timeYear": 345,
+    "time": 331,
+    "timeDay": 331,
+    "timeWeek": 331,
+    "timeMonth": 331,
+    "timeYear": 331,
     "dailyMinutesDown": {}
   },
   {
@@ -28,13 +28,13 @@
     "uptimeWeek": "0.02%",
     "uptimeMonth": "0.02%",
     "uptimeYear": "0.02%",
-    "time": 74,
-    "timeDay": 74,
-    "timeWeek": 74,
-    "timeMonth": 74,
-    "timeYear": 74,
+    "time": 70,
+    "timeDay": 70,
+    "timeWeek": 70,
+    "timeMonth": 70,
+    "timeYear": 70,
     "dailyMinutesDown": {
-      "2025-07-03": 43
+      "2025-07-03": 55
     }
   },
   {
@@ -48,11 +48,29 @@
     "uptimeWeek": "100.00%",
     "uptimeMonth": "100.00%",
     "uptimeYear": "100.00%",
-    "time": 275,
-    "timeDay": 275,
-    "timeWeek": 275,
-    "timeMonth": 275,
-    "timeYear": 275,
+    "time": 283,
+    "timeDay": 283,
+    "timeWeek": 283,
+    "timeMonth": 283,
+    "timeYear": 283,
+    "dailyMinutesDown": {}
+  },
+  {
+    "name": "TestEnv3",
+    "url": "https://learn.microsoft.com/it-it/aspnet/core/razor-pages/?view=aspnetcore-9.0&tabs=visual-studio",
+    "icon": "https://icons.duckduckgo.com/ip3/learn.microsoft.com.ico",
+    "slug": "test-env3",
+    "status": "up",
+    "uptime": "100.00%",
+    "uptimeDay": "100.00%",
+    "uptimeWeek": "100.00%",
+    "uptimeMonth": "100.00%",
+    "uptimeYear": "100.00%",
+    "time": 283,
+    "timeDay": 283,
+    "timeWeek": 283,
+    "timeMonth": 283,
+    "timeYear": 283,
     "dailyMinutesDown": {}
   }
 ]
